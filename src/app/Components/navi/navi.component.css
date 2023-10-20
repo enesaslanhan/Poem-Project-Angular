@@ -9,11 +9,11 @@ li{
 }
 a{
     text-decoration: none;
-    color: #000000;
+    color: #fff;
     font-size: 1rem;
 }
 a:hover{
-    color: burlywood;
+    color: orange;
     transition: 0.5s;
 }
 .navbar{
@@ -24,6 +24,8 @@ a:hover{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #000000;
+    border-radius: 10px;
 }
 
 .navbar .logo a{
@@ -49,6 +51,7 @@ a:hover{
     font-size: 0.8rem;
     font-weight: bold;
     cursor: pointer;
+    margin-right: 15px;
 
 }
 .action_btn:hover{

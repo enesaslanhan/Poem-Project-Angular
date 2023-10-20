@@ -24,7 +24,7 @@ export class NaviComponent implements OnInit{
       toggleBtnIcon.classList.add('fa-bars');
       toggleBtnIcon.classList.remove('fa-xmark');
     }
-    
   }
+  
 
 }
