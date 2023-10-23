@@ -6,18 +6,18 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="form">
             <div class="form login" *ngIf="login">
                 <span class="title">Giriş</span>
-                <form>
+                <form [formGroup]="userLoginForm">
                     <div class="input-field">
-                        <input type="text" placeholder="E-Posta adresinizi giriniz">
+                        <input type="email" placeholder="E-Posta adresinizi giriniz" formControlName="email">
                         <i class="fa-regular fa-envelope"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Lütfen şifrenizi giriniz">
+                        <input type="password" class="password" placeholder="Lütfen şifrenizi giriniz" formControlName="password">
                         <i class="fa-solid fa-eye"></i>
                         <i class="fa-solid fa-eye-slash" style="right: 0;"></i>
                     </div>
                     <div class="input-field button">
-                        <input id="button" type="button" value="Giriş" style="color: white;">
+                        <input (click)="loginControl()" id="button" type="button" value="Giriş" style="color: white;">
                     </div>
                 </form>
                 <div class="login-signup" >
