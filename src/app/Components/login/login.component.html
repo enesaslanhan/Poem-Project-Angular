@@ -6,7 +6,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="form">
             <div class="form login" *ngIf="login">
                 <span class="title">Giriş</span>
-                <form action="#">
+                <form>
                     <div class="input-field">
                         <input type="text" placeholder="E-Posta adresinizi giriniz">
                         <i class="fa-regular fa-envelope"></i>
@@ -17,42 +17,44 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         <i class="fa-solid fa-eye-slash" style="right: 0;"></i>
                     </div>
                     <div class="input-field button">
-                        <input type="button" value="Giriş" style="color: white;">
+                        <input id="button" type="button" value="Giriş" style="color: white;">
                     </div>
                 </form>
                 <div class="login-signup" >
                     <span class="text">Üye değil misin?
                         <a class="text signup-link" (click)="signup()">Şimdi üye ol</a>
                     </span>
-                </div>              
+                </div>
+                
             </div>
             <div class="form signup"*ngIf="sign">
                 <span class="title">Kayıt</span>
-                <form action="#">
+                <form [formGroup]="userAddForm">
                     <div class="input-field">
-                        <input type="text" placeholder="Email adresinizi giriniz">
+                        <input type="text" placeholder="Email adresinizi giriniz" formControlName="email">
                         <i class="fa-regular fa-envelope"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" placeholder="şifrenizi giriniz">
+                        <input type="password" placeholder="şifrenizi giriniz" formControlName="password">
                         <i class="fa-solid fa-eye"></i>
                         <i class="fa-solid fa-eye-slash"style="right: 0;"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" placeholder="şifrenizi onayla">
-                        <i class="fa-solid fa-eye"></i>
-                        <i class="fa-solid fa-eye-slash" style="right: 0;"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" placeholder="Anonim isminizi giriniz">
+                        <input type="text" placeholder="Anonim isminizi giriniz" formControlName="fakeName">
                         <i class="fa-regular fa-user"></i>
                     </div>
                     <div class="input-field button">
-                        <input type="button" value="Kayıt">
+                        <input (click)="Add()" id="button" type="button" value="Kayıt" style="color: white;">
                     </div>
                     
                 </form>
+                <div class="login-signup" >
+                    <span class="text">Zaten Üye misin?
+                        <a class="text signup-link" (click)="loginUp()">Şimdi giriş yap</a>
+                    </span>
+                </div>
             </div>
+           
         </div>
     </div>
 </body>
