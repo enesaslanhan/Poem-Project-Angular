@@ -1,4 +1,4 @@
-import { CanActivate } from "@angular/router";
+import { CanActivate, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { Injectable } from '@angular/core';
 @Injectable({
@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
     /**
      *
      */
-    constructor(private toastrService:ToastrService) {
+    constructor(private toastrService:ToastrService,private router:Router) {
        
         
     }
@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate {
           }
           else{
             this.toastrService.info("Lütfen giriş yapınız")
+            this.router.navigate(['login'])
             return false;
             
           }

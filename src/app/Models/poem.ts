@@ -1,5 +1,5 @@
 export interface Poem{
-    ıd:number,
+    id:number,
     userId:number,
     poemName:string,
     poemText:string
