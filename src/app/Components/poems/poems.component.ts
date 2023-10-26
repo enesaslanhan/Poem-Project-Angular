@@ -10,6 +10,13 @@ import { PoemService } from 'src/app/Services/poem.service';
 })
 export class PoemsComponent implements OnInit {
   poems:Poem[]=[]
+  poemDetail:Poem={
+    poemName:"",
+    poemText:"",
+    userId:0,
+    id:0
+  };
+  detail:boolean=false
   constructor(private poemService:PoemService) { }
   ngOnInit(): void {
     this.GetAll();
@@ -20,6 +27,14 @@ export class PoemsComponent implements OnInit {
         this.poems.push(element);
       });
     })
+  }
+  PoemDetail(poem:Poem){
+    this.poemDetail.poemName=poem.poemName
+    this.poemDetail.poemText=poem.poemText
+    this.detail=true;
+  }
+  TurnBack(){
+    this.detail=false
   }
 
 }
