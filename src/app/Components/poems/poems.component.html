@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--<div class="container">
+    <div class="box" *ngFor="let poem of poems">
+        <div class="profil"></div>
+        <div class="poem-name">{{poem.poemName}}</div>
+        <div class="poem-text"><pre>{{poem.poemText}}</pre></div>
+        <div class="score"></div>
+    </div>
+</div>-->
+
+
+<div class="container">
+    <span class="title">ŞİİRLER</span>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Şiirin Adı</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">Puan</th>
+            <th scope="col">İncele</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let poem of poems">
+          <tr>
+            <td>{{poem.poemName}}</td>
+            <td>Yazar</td>
+            <td>26-10-2023</td>
+            <td>7,5</td>
+            <td><i class="fa-solid fa-magnifying-glass" style="color: #fd960a;"></i></td>
+          </tr>
+          <tr>
+      </table>
+</div>

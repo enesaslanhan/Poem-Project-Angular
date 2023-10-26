@@ -11,13 +11,15 @@ import { NaviComponent } from './Components/navi/navi.component';
 import { LoginComponent } from './Components/login/login.component';
 import { PoemAddComponent } from './Components/poem-add/poem-add.component';
 import { AuthGuard } from './guards/auth-guard';
+import { PoemsComponent } from './Components/poems/poems.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NaviComponent,
     LoginComponent,
-    PoemAddComponent
+    PoemAddComponent,
+    PoemsComponent
   ],
   imports: [
     BrowserModule,

@@ -29,15 +29,7 @@ export class PoemAddComponent implements OnInit{
 
   }
 
-  Add(){
-
-    this.poemService.getAll().subscribe(response=>{
-      console.log(response.data[0])
-      this.deneme=response.data[0].poemText
-    })
-
-
-    /*
+  Add(){   
     if (this.poemAddForm.valid) {
       
       let poemModel=Object.assign({},this.poemAddForm.value)
@@ -54,12 +46,9 @@ export class PoemAddComponent implements OnInit{
       },errorResponse=>{
         this.toastrService.error("Şiiriniz siteye eklenemedi","başarısız")
       })
-      
-      
-      
     }
-    */
   }
+  
   UserIdFind(email:string){
     this.userservice.getByEmail(email).subscribe(response=>{
       
