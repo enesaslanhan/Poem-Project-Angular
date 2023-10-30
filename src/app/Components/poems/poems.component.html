@@ -24,12 +24,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <th scope="col">İncele</th>
           </tr>
         </thead>
-        <tbody *ngFor="let poemdata of poemData">
+        <tbody *ngFor="let poemdata of poemUserScores">
           <tr>
             <td>{{poemdata.poem.poemName}}</td>
             <td>{{poemdata.fakeName}}</td>
             <td>26-10-2023</td>
-            <td>{{poemdata.puan}}</td>
+            <td>{{poemdata.poemScore}}</td>
             <td><i (click)="PoemDetail(poemdata.poem)" class="fa-solid fa-magnifying-glass" style="color: #fd960a;"></i></td>
           </tr>
           <tr>

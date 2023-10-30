@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { elementAt } from 'rxjs';
+import { Observable, elementAt, forkJoin, map, switchMap } from 'rxjs';
 import { Poem } from 'src/app/Models/poem';
 import { PoemDataModel } from 'src/app/Models/poemDataModel';
 import { PoemScore } from 'src/app/Models/poemScore';
+import { PoemUserScoreModel } from 'src/app/Models/poemUserScoreModel';
 import { PoemScoreService } from 'src/app/Services/poem-score.service';
 import { PoemService } from 'src/app/Services/poem.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -17,6 +18,10 @@ import { UserService } from 'src/app/Services/user.service';
 export class PoemsComponent implements OnInit {
   poems:Poem[]=[]
   poemData:PoemDataModel[]=[]
+  poemUserScores:PoemUserScoreModel[]=[]
+  totalScore:0
+  totalUser:0
+  poemUserScoreModel:PoemUserScoreModel;
   scoreForm:FormGroup;
   CreateScoreForm(){
     this.scoreForm=this.formBuilder.group({
@@ -35,6 +40,7 @@ export class PoemsComponent implements OnInit {
     id:0
   };
   
+  
   poemScoreModel:PoemScore={
     id:0,
     poemId:0,
@@ -50,21 +56,56 @@ export class PoemsComponent implements OnInit {
     this.GetAll();
     this.CreateScoreForm();
   }
-  GetAll(){
-    this.poemService.getAll().subscribe(response=>{
-      response.data.forEach(element => {
-        this.userService.getById(element.userId).subscribe(response=>{
-          this.poemDataModel.fakeName=response.data.fakeName
-          this.poemDataModel.poem=element;
-          this.poemData.push(this.poemDataModel);
-          this.poemDataModel={
-          fakeName:"",
-          poem:null,
-          puan:7
-        }
-        })   
+  // ...
+
+GetAll() {
+  this.poemService.getAll().pipe(
+    switchMap(poemResponse => {
+      const observables = poemResponse.data.map(element => {
+        return this.UserGetById(element.userId).pipe(
+          switchMap(fakeName => {
+            return this.PoemScoreGetByPoemId(element.id).pipe(
+              map(poemScore => ({
+                fakeName: fakeName,
+                poem: element,
+                poemScore: poemScore
+              }))
+            );
+          })
+        );
       });
+
+      return forkJoin(observables);
     })
+  ).subscribe(
+    (poemUserScores: { fakeName: string; poem: Poem; poemScore: number }[]) => {
+      // poemUserScores, tüm verilerin birleştirilmiş sonucu
+      this.poemUserScores = poemUserScores;
+    }
+  );
+}
+
+// ...
+
+  UserGetById(userId: number): Observable<string> {
+    return this.userService.getById(userId).pipe(
+      map(response => response.data.fakeName)
+    );
+  }
+  PoemScoreGetByPoemId(poemId: number): Observable<number> {
+    return this.poemScoreService.getAll().pipe(
+      map(response => {
+        let totalScore = 0;
+        let totalUser = 0;
+        response.data.forEach(element => {
+          if (element.poemId == poemId) {
+            totalScore += element.score;
+            totalUser++;
+          }
+        });
+        return totalScore / totalUser;
+      })
+    );
   }
   PoemDetail(poem:Poem){
     this.poemDetail.poemName=poem.poemName
@@ -74,7 +115,10 @@ export class PoemsComponent implements OnInit {
   }
   TurnBack(){
     this.detail=false
+    location.reload()
   }
+
+  //PoemScore İşlemleri
   
   SetPoemScore(poem:Poem){
     console.log(poem)  
