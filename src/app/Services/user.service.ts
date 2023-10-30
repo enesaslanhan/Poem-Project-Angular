@@ -20,6 +20,9 @@ export class UserService {
   getByEmail(email:string):Observable<DataResponseModel<User>>{
     return this.httpClient.get<DataResponseModel<User>>(this.apiUrl+"getbyemail?email="+email);
   }
+  getById(id:number):Observable<DataResponseModel<User>>{
+    return this.httpClient.get<DataResponseModel<User>>(this.apiUrl+"getbyid?id="+id)
+  }
   
 
 }
