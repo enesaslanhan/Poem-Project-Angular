@@ -19,5 +19,8 @@ export class PoemService {
   getAll():Observable<DataResponseModel<Poem[]>>{
     return this.httpClient.get<DataResponseModel<Poem[]>>(this.apiUrl+"getall");
   }
+  getPoemId(poemId:Number):Observable<DataResponseModel<Poem>>{
+    return this.httpClient.get<DataResponseModel<Poem>>(this.apiUrl+"getbypoemid?poemid="+poemId)
+  }
 
 }
