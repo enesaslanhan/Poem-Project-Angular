@@ -1,8 +1,10 @@
 <div class="container">
-    <div class="poem-name"><span>Şiir adı</span></div>
-    <div class="poem-text"><pre>Şiir</pre></div>
+    <div class="poem-name"><span>{{poemUserScoresModel.poem.poemName}}</span></div>
+    <div class="poem-text"><pre>{{poemUserScoresModel.poem.poemText}}</pre></div>
     <div class="informations">
-        <span class="information">Puan</span>
-        <span class="information">Yazar</span>
+        <label for="" class="title">Puan=</label>
+        <span class="information">{{poemUserScoresModel.poemScore}}</span>
+        <label for="" class="title">Yazar=</label>
+        <span class="information">{{poemUserScoresModel.fakeName}}</span>
     </div>
 </div>

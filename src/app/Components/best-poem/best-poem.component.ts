@@ -37,8 +37,9 @@ export class BestPoemComponent implements OnInit{
       })
       this.userService.getById(userId).subscribe(response=>{
         this.poemUserScoresModel.fakeName=response.data.fakeName;
+        console.log(this.poemUserScoresModel)
       })
-      console.log(this.poemUserScoresModel)
+      
     })
     
   }
