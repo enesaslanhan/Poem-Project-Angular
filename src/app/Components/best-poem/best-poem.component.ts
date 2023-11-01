@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Poem } from 'src/app/Models/poem';
 import { PoemUserScoreModel } from 'src/app/Models/poemUserScoreModel';
 import { PoemScoreService } from 'src/app/Services/poem-score.service';
 import { PoemService } from 'src/app/Services/poem.service';
@@ -16,8 +17,10 @@ export class BestPoemComponent implements OnInit{
     poem:null,
     poemScore:0
   }
+  poemUserScoresModels:PoemUserScoreModel[]=[];
+  poems:Poem[]=[]
   ngOnInit(): void {
-    this.Get()
+    this.GetAllPoems()
   }
   Get(){
     this.poemScoreService.getAll().subscribe(response=>{
@@ -38,9 +41,20 @@ export class BestPoemComponent implements OnInit{
       this.userService.getById(userId).subscribe(response=>{
         this.poemUserScoresModel.fakeName=response.data.fakeName;
         console.log(this.poemUserScoresModel)
-      })
+      })  
+    })
+  }
+  GetAllPoems(){
+    this.poemService.getAll().subscribe(response=>{
+      response.data.forEach(element => {
+        this.poems.push(element)
+      });
+    })
+  }
+  SetPoemUserScoreModel(){
+    this.poemScoreService.getAll().subscribe(response=>{
       
     })
-    
   }
+
 }
