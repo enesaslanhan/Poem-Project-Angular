@@ -128,13 +128,14 @@ GetAll() {
       this.poemScoreModel.score=this.scoreForm.value.score
       this.poemScoreModel.poemId=poem.id
       this.addPoemScore(this.poemScoreModel);
-      
       }
     })    
   }
   addPoemScore(poemScore:PoemScore){
     this.poemScoreService.add(poemScore).subscribe(response=>{
       this.toastrService.success("Puan verildi")
+    },errorResponse=>{
+      this.toastrService.error("Puan Verilemedi")
     })
   }
 
