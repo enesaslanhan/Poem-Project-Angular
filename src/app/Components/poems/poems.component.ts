@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, elementAt, forkJoin, map, switchMap } from 'rxjs';
 import { Poem } from 'src/app/Models/poem';
@@ -51,7 +52,7 @@ export class PoemsComponent implements OnInit {
   detail:boolean=false
   constructor(private poemService:PoemService,private userService:UserService,
     private poemScoreService:PoemScoreService,private formBuilder:FormBuilder,
-    private toastrService:ToastrService) { }
+    private toastrService:ToastrService,private RouterService:Router) { }
   ngOnInit(): void {
     this.GetAll();
     this.CreateScoreForm();
@@ -121,15 +122,22 @@ GetAll() {
   //PoemScore İşlemleri
   
   SetPoemScore(poem:Poem){
-    console.log(poem)  
-    this.userService.getByEmail(sessionStorage.getItem("email")).subscribe(response=>{
-      this.poemScoreModel.userId=response.data.id;
-      if (this.scoreForm.valid) {
-      this.poemScoreModel.score=this.scoreForm.value.score
-      this.poemScoreModel.poemId=poem.id
-      this.addPoemScore(this.poemScoreModel);
+    console.log(poem)
+      if (sessionStorage.getItem("email")!=null) {
+        this.userService.getByEmail(sessionStorage.getItem("email")).subscribe(response=>{
+          this.poemScoreModel.userId=response.data.id;
+          if (this.scoreForm.valid) {
+          this.poemScoreModel.score=this.scoreForm.value.score
+          this.poemScoreModel.poemId=poem.id
+          this.addPoemScore(this.poemScoreModel);
+          }
+        })
       }
-    })    
+      else{
+        this.toastrService.error("Puan Verebilmek için giriş Yapmalısınız");
+        this.RouterService.navigate(["login"])
+      }
+    
   }
   addPoemScore(poemScore:PoemScore){
     this.poemScoreService.add(poemScore).subscribe(response=>{
