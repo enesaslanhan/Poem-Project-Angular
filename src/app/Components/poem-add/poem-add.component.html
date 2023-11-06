@@ -1,16 +1,51 @@
-<div class="container">
-    <div class="poem-area">
-        <form [formGroup]="poemAddForm">
-            <div class="row">
-                <label class="label" >Şiirinizin ismini girin</label>
-                <input type="text" class="poem" formControlName="poemName">
+<!--
+
+<div class="poem-add" style="width: 100%;">
+    <div class="container" id="child">
+        <div class="poem-area">
+            <form [formGroup]="poemAddForm">
+                <div class="row">
+                    <label class="label" >Şiirinizin ismini girin</label>
+                    <input type="text" class="poem" formControlName="poemName">
+                </div>
+                <div class="row">
+                    <label class="label">Şiirinizi giriniz</label>
+                    <textarea formControlName="poemText" name="" class="poem" id="" cols="30" rows="10"></textarea>
+                </div>
+            </form>
+            <button type="button" (click)="Add()" id="button" class="btn btn-primary">Ekle</button>
+        </div>
+    </div>
+    <div class="profil" id="child"><div>Profil Name</div></div>
+</div>
+
+-->
+<div class="containers">
+    <div class="" style="float: left;" id="container">
+        <div class="container" id="child">
+            <div class="poem-area">
+                <form [formGroup]="poemAddForm">
+                    <div class="row">
+                        <label class="label" >Şiirinizin ismini girin</label>
+                        <input type="text" class="poem" formControlName="poemName">
+                    </div>
+                    <div class="row">
+                        <label class="label">Şiirinizi giriniz</label>
+                        <textarea formControlName="poemText" name="" class="poem" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </form>
+                <button type="button" (click)="Add()" id="button" class="btn btn-primary">Ekle</button>
             </div>
-            <div class="row">
-                <label class="label">Şiirinizi giriniz</label>
-                <textarea formControlName="poemText" name="" class="poem" id="" cols="30" rows="10"></textarea>
-            </div>
-        </form>
-        <button type="button" (click)="Add()" id="button" class="btn btn-primary">Ekle</button>
-        
+        </div>
+    </div>
+
+    <div class="profil" style="float: left; text-align: center;" id="profil">
+        <div class="name"><h1>Profil Name</h1>
+        <span>Profil Puanı</span>
+        <span>Yazılan Şiir Sayıları</span>
+        <span>Çıkış yap</span>
+        </div>
     </div>
 </div>
+
+

@@ -1,8 +1,15 @@
-.container{
-    width: 80%;
-    background-color: orange;
-    margin-top: 5%;
-    border-radius: 10px;
+.containers{
+    display: flex;
+  justify-content: space-between;
+}
+#container{
+    width: 65%; /* 10 birimlik yer kaplar */
+    background-color: lightblue;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    margin-left: 4%; /* İki div arasında 10 piksel boşluk bırakır */
+    margin-top: 4%;
+    border-radius: 5%;
 }
 .poem-area{
     width: 80%;
@@ -28,7 +35,21 @@
     text-align: center;
     padding:10px 0;
 }
-.profil{
-    background-color: orange;
-    right: 0;
+
+#profil{
+    width: 25%; /* 3 yanyana sıralanır */
+    background-color: lightgreen;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    margin-top: 4%;
+     border-radius: 5%;
+    
 }
+.profil{
+    display: block;
+    
+}
+#child{
+    float: left;
+}
+
