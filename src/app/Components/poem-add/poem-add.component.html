@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!--
 
 <div class="poem-add" style="width: 100%;">
@@ -40,11 +43,12 @@
     </div>
 
     <div class="profil" style="float: left; text-align: center;" id="profil">
-        <div class="name"><h1>Profil Name</h1>
-        <span>Profil Puanı</span>
-        <span>Yazılan Şiir Sayıları</span>
-        <span>Çıkış yap</span>
-        </div>
+        <div class="name"><h1>{{setUserName}} </h1></div>
+        <div class="puan"><Label class="labelProfil">Profil Puanı:</Label><i class="fa-solid fa-equals" style="margin-right: 5%;"></i><span>{{setUserScore}}</span></div>
+        <div class="poemNumber"><Label class="labelProfil">Yazılan Şiir Sayısı:</Label><i class="fa-solid fa-equals" style="margin-right: 5%;"></i><span>{{setPoemNumber}}</span></div>
+        <div class="logout"><button class="btn btn-primary">Çıkış Yap</button></div>
+        
+        
     </div>
 </div>
 

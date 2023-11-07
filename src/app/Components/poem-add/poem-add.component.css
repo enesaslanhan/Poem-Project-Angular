@@ -42,14 +42,29 @@
     border: 1px solid #000;
     box-sizing: border-box;
     margin-top: 4%;
-     border-radius: 5%;
+    border-radius: 5%;
     
 }
-.profil{
-    display: block;
-    
+.name{
+    margin-top: 5%;
+    margin-bottom: 19%;
 }
 #child{
     float: left;
 }
+.labelProfil{
+    color: black;
+    margin-right: 5%;
+    margin-bottom: 10%;
+    font-size: large;
+    background-color: white;
+    padding: 2% 6%;
+    
+}
 
+.profil span{
+    font-size: large;
+    background-color: white;
+    padding: 2% 6%;
+    
+}

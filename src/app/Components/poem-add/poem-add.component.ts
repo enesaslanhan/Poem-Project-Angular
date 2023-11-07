@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Poem } from 'src/app/Models/poem';
+import { PoemScoreService } from 'src/app/Services/poem-score.service';
 import { PoemService } from 'src/app/Services/poem.service';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -14,11 +15,16 @@ export class PoemAddComponent implements OnInit{
   
   poemAddForm:FormGroup;
   poemUserId:number
-  deneme:string=''
-  constructor(private poemService:PoemService,private toastrService:ToastrService,private formBuilder:FormBuilder,private userservice:UserService) {  }
+  setUserName:string
+  setPoemNumber:number=0
+  setUserScore:number
+  constructor(private poemService:PoemService,private toastrService:ToastrService,
+    private formBuilder:FormBuilder,private userservice:UserService,
+    private poemScoreService:PoemScoreService) {  }
   ngOnInit() {
     this.createPoemForm();
     this.UserIdFind(sessionStorage.getItem("email"));
+    this.SetUser();
   }
 
   createPoemForm(){
@@ -55,6 +61,22 @@ export class PoemAddComponent implements OnInit{
       this.poemUserId=response.data.id;
     })
     
+  }
+  SetUser(){
+    this.userservice.getByEmail(sessionStorage.getItem("email")).subscribe(response=>{
+      this.setUserName=response.data.fakeName;
+      this.poemService.getAll().subscribe(responsePeom=>{
+        responsePeom.data.forEach(element=>{
+          if (element.userId==response.data.id) {
+            this.setPoemNumber++;
+            this.poemScoreService.getPoemId(element.id).subscribe(responseScore=>{
+              this.setUserScore+=responseScore.data.score
+            })
+          }
+        })
+        this.setUserScore=this.setUserScore/this.setPoemNumber;
+      })
+    })
   }
 
 
