@@ -19,7 +19,7 @@ export class PoemScoreService {
   getAll():Observable<DataResponseModel<PoemScore[]>>{
     return this.httpClient.get<DataResponseModel<PoemScore[]>>(this.apiUrl+"getall");
   }
-  getPoemId(poemId:number):Observable<DataResponseModel<PoemScore>>{
-    return this.httpClient.get<DataResponseModel<PoemScore>>(this.apiUrl+"getbypoemid?poemid="+poemId);
+  getPoemId(poemId:number):Observable<DataResponseModel<PoemScore[]>>{
+    return this.httpClient.get<DataResponseModel<PoemScore[]>>(this.apiUrl+"getbypoemid?poemid="+poemId);
   }
 }
