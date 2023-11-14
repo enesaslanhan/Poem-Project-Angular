@@ -1,10 +1,18 @@
 .container{
     width: 45%;
-    background-color: aqua;
+    /*background-color: aqua;*/
     text-align: center;
     margin-top: 5%;
     border-radius: 5%;
+    color: white;
+    background-image: url('/assets/pictures/1.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
 }
+
 .poem-name{
     font-size: 25px;
     margin-bottom: 15px;
@@ -22,3 +30,12 @@
     font-size: 20px;
     margin-right: 10px;
 }
+/*
+.backround{
+    background-image: url('/assets/pictures/1.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+*/
