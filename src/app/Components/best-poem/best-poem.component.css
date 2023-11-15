@@ -1,33 +1,37 @@
 .container{
-    width: 45%;
+    display: grid;
+    place-items: center; 
+    width: 50%;
     /*background-color: aqua;*/
     text-align: center;
     margin-top: 5%;
     border-radius: 5%;
     color: white;
-    background-image: url('/assets/pictures/1.jpg');
+    background-image: url('/assets/pictures/Deniz.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100vh;
+    margin-bottom: 5%;
     
 }
 
 .poem-name{
-    font-size: 25px;
+    font-size: 30px;
     margin-bottom: 15px;
     padding-top: 15px;
     
 }
 .poem-text{
-    font-size: 20px;
+    font-size: 25px;
 }
 .information{
-    font-size: 20px;
+    font-size: 25px;
     margin-right: 30px;
 }
 .title{
-    font-size: 20px;
+    font-size: 25px;
     margin-right: 10px;
 }
 /*
