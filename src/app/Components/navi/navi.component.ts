@@ -49,9 +49,15 @@ export class NaviComponent implements OnInit{
   LogOut(){
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("password");
-    this.UserControlName();
-    
-    
+    this.UserControlName();  
+  }
+  LogIn(){
+    if (this.logOutButton==true) {
+      this.roterService.navigate(["poem-add"])
+    }
+    else{
+      this.roterService.navigate(["login"])
+    }
   }
   
 
