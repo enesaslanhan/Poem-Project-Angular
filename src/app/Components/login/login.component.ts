@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,FormControl,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -10,7 +11,8 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class LoginComponent implements OnInit{
 
-  constructor(private userService:UserService,private formBuilder:FormBuilder,private toastrService:ToastrService){
+  constructor(private userService:UserService,private formBuilder:FormBuilder,private toastrService:ToastrService,
+    private routerService:Router){
     
   }
   login=true;
@@ -62,6 +64,8 @@ export class LoginComponent implements OnInit{
           this.toastrService.success("Giriş Başarılı")
           sessionStorage.setItem("email",response.data.email);
           sessionStorage.setItem("password",response.data.password);
+          this.routerService.navigate(["poems"])
+
         }
         else{
           this.toastrService.error("Parola Hatası")

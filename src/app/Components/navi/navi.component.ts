@@ -17,6 +17,7 @@ export class NaviComponent implements OnInit{
     this.UserControlName();
   }
   userControl="";
+  logOutButton=false;
   
   toggleOpen(){
     const toggleBtn=document.querySelector('.toggle_btn')
@@ -36,12 +37,21 @@ export class NaviComponent implements OnInit{
     if (sessionStorage.getItem("email")!=null) {
       this.userService.getByEmail(sessionStorage.getItem("email")).subscribe(response=>{
         this.userControl=response.data.fakeName;
+        this.logOutButton=true;
       })
 
     }
     else{
       this.userControl="Giriş";
+      this.logOutButton=false;
     }
+  }
+  LogOut(){
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("password");
+    this.UserControlName();
+    
+    
   }
   
 

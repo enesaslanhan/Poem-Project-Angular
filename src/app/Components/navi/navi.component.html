@@ -10,7 +10,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <li><a routerLink="poem-add">Şiir Yaz</a></li>
         <li><a routerLink="best-poem">Haftanın En İyisi</a></li>
     </ul>
-    <a href="" routerLink="login" class="action_btn">{{userControl}}</a>
+    <div>
+        <a href="" routerLink="login" class="action_btn">{{userControl}}</a>
+        <a href="" routerLink="login" *ngIf="logOutButton" (click)="LogOut()" class="action_btn">Çıkış Yap</a>
+    </div>
+    
     <div class="toggle_btn" (click)="toggleOpen()">
         <i class="fa-solid fa-bars"></i>
     </div>
