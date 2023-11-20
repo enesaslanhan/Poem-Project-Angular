@@ -29,7 +29,7 @@ export class PoemAddComponent implements OnInit{
     this.UserIdFind(sessionStorage.getItem("email"));
     this.SetUser();
     this.SetPoemNumber()
-    
+        
   }
 
   createPoemForm(){

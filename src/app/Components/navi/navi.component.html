@@ -11,7 +11,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <li><a routerLink="best-poem">Haftanın En İyisi</a></li>
     </ul>
     <div>
-        <a href="" (click)="LogIn()"  class="action_btn">{{userControl}}</a>
+        <a href="" [routerLink]="deneme"  class="action_btn">{{userControl}}</a>
         <a href="" routerLink="login" *ngIf="logOutButton" (click)="LogOut()" class="action_btn">Çıkış Yap</a>
     </div>
     

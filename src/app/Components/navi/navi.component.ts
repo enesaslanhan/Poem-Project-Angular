@@ -18,6 +18,7 @@ export class NaviComponent implements OnInit{
   }
   userControl="";
   logOutButton=false;
+  deneme="poem-add"
   
   toggleOpen(){
     const toggleBtn=document.querySelector('.toggle_btn')
@@ -51,14 +52,15 @@ export class NaviComponent implements OnInit{
     sessionStorage.removeItem("password");
     this.UserControlName();  
   }
+  /*
   LogIn(){
     if (this.logOutButton==true) {
-      this.roterService.navigate(["poem-add"])
+      this.deneme="poem-add";
     }
     else{
-      this.roterService.navigate(["login"])
+      this.deneme="login"
     }
   }
-  
+  */
 
 }

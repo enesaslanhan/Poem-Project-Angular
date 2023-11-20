@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
 import { FormBuilder,FormGroup,FormControl,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit{
           sessionStorage.setItem("email",response.data.email);
           sessionStorage.setItem("password",response.data.password);
           this.routerService.navigate(["poems"])
-
         }
         else{
           this.toastrService.error("Parola Hatası")
