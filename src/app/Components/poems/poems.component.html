@@ -39,12 +39,21 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
       <div class="box" style="text-align: center;" *ngIf="detail">
         <div class="poem-name" style="color: white;font-size: 22px;">{{poemDetail.poemName}}</div>
         <div class="poem-text"><pre style="color: white;font-size: 20px;">{{poemDetail.poemText}}</pre></div>
+        
         <div class="puan">
             <form [formGroup]="scoreForm">
                 <input formControlName="score" style="margin-right: 5%; height: 35px; bottom: 0;" class="formControl" type="number" placeholder="Puan Verin (0-10 arası)">
                 <button type="submit" class="btn btn-primary" style="height: 35px;" (click)="SetPoemScore(poemDetail)">Gönder</button>
             </form>
         </div>
-        <button class="btn btn-primary" style="margin-top: 5%;" (click)="TurnBack()">Geri Dön</button>
+        <div class="buttons">
+          <button class="btn btn-primary" style="margin-top: 5%;" (click)="TurnBack()">Geri Dön</button>
+          
+        </div>
+        
+
       </div>
 </div>
+
+
+

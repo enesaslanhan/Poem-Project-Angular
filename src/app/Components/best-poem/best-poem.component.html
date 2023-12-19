@@ -1,12 +1,15 @@
 <div  class="backround">
     <div class="container">
-        <div class="poem-name"><span>{{poemUserScoresModel.poem.poemName}}</span></div>
-        <div class="poem-text"><pre>{{poemUserScoresModel.poem.poemText}}</pre></div>
+        <div class="poem-name"><span>{{poem.poemName}}</span></div>
+        <div class="poem-text"><pre>{{poem.poemText}}</pre></div>
         <div class="informations">
             <label for="" class="title">Puan=</label>
-            <span class="information">{{poemUserScoresModel.poemScore}}</span>
+            <span class="information">{{poemScore}}</span>
             <label for="" class="title">Yazar=</label>
-            <span class="information">{{poemUserScoresModel.fakeName}}</span>
+            <span class="information">{{user.fakeName}}</span>
+            <label for="" class="title">Puan veren kişi=</label>
+            <span class="information">{{peoplePoints}}</span>
+
         </div>
     </div>
 </div>

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Poem } from 'src/app/Models/poem';
+import { PoemGetScore } from 'src/app/Models/poemGetScore';
 import { PoemUserScoreModel } from 'src/app/Models/poemUserScoreModel';
 import { PoemGetScoreService } from 'src/app/Services/poem-get-score.service';
 import { PoemScoreService } from 'src/app/Services/poem-score.service';
 import { PoemService } from 'src/app/Services/poem.service';
 import { UserService } from 'src/app/Services/user.service';
-
+import { map,filter,pairwise,pipe} from 'rxjs';
+import { User } from 'src/app/Models/user';
 @Component({
   selector: 'app-best-poem',
   templateUrl: './best-poem.component.html',
@@ -14,39 +16,45 @@ import { UserService } from 'src/app/Services/user.service';
 export class BestPoemComponent implements OnInit{
   constructor(private poemService:PoemService,private poemScoreService:PoemScoreService,
     private userService:UserService,private poemGetScoreService:PoemGetScoreService){}
-  poemUserScoresModel:PoemUserScoreModel={
-    fakeName:"",
-    poem:null,
-    poemScore:0
-  }
-  poemUserScoresModels:PoemUserScoreModel[]=[];
-  poems:Poem[]=[]
+ 
+  peoplePoints=0;
+  poemScore=0;
+  poem:Poem;
+  user:User;
   ngOnInit(): void {
-    this.Get()
+    this.GetPoem();
   }
-  Get(){
+
+  NumberOfPeopleGivingPoints(id:number){
+    this.poemGetScoreService.getAll().pipe(map(data=>data.data.filter(d=>d.poemId==id))).subscribe(response=>{
+      this.poemScore=response[0].score;
+      this.peoplePoints=response[0].numberOfUser;
+      console.log(this.peoplePoints)
+    })
+  }
+  GetPoem(){
     this.poemGetScoreService.getAll().subscribe(response=>{
       let score=0;
       let poemId;
-      let userId;
       response.data.forEach(element => {
         if (element.score>=score) {
-          this.poemUserScoresModel.poemScore=element.score;
           score=element.score;
           poemId=element.poemId;
         }
-      });
-      this.poemService.getPoemId(poemId).subscribe(response=>{
-        this.poemUserScoresModel.poem=response.data
-        userId=response.data.userId
-        this.userService.getById(userId).subscribe(response=>{
-          this.poemUserScoresModel.fakeName=response.data.fakeName;
-          console.log(this.poemUserScoresModel)
-        })  
       })
-      
+      this.NumberOfPeopleGivingPoints(poemId);
+      this.SetPoem(poemId);
+    })  
+  }
+  SetPoem(id:number){
+    this.poemService.getPoemId(id).subscribe(response=>{
+      this.poem=response.data;
+      this.SetFakeName(response.data.userId);
     })
   }
-
-
+  SetFakeName(id:number){
+    this.userService.getById(id).subscribe(response=>{
+      this.user=response.data;
+    })
+  }
 }
