@@ -10,50 +10,54 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     </div>
 </div>-->
 
-
-<div class="container">
+<div class="deneme">
+  <div class="container">
     <div  *ngIf="detail!=true">
-        <span class="title">ŞİİRLER</span>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Şiirin Adı</th>
-            <th scope="col">Yazar</th>
-            <th scope="col">Tarih</th>
-            <th scope="col">Puan</th>
-            <th scope="col">İncele</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let poemdata of poemUserScores">
-          <tr>
-            <td>{{poemdata.poem.poemName}}</td>
-            <td>{{poemdata.fakeName}}</td>
-            <td>26-10-2023</td>
-            <td>{{poemdata.poemScore}}</td>
-            <td><i (click)="PoemDetail(poemdata.poem)" class="fa-solid fa-magnifying-glass" style="color: #fd960a;"></i></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-      <div class="box" style="text-align: center;" *ngIf="detail">
-        <div class="poem-name" style="color: white;font-size: 22px;">{{poemDetail.poemName}}</div>
-        <div class="poem-text"><pre style="color: white;font-size: 20px;">{{poemDetail.poemText}}</pre></div>
-        
-        <div class="puan">
-            <form [formGroup]="scoreForm">
-                <input formControlName="score" style="margin-right: 5%; height: 35px; bottom: 0;" class="formControl" type="number" placeholder="Puan Verin (0-10 arası)">
-                <button type="submit" class="btn btn-primary" style="height: 35px;" (click)="SetPoemScore(poemDetail)">Gönder</button>
-            </form>
-        </div>
-        <div class="buttons">
-          <button class="btn btn-primary" style="margin-top: 5%;" (click)="TurnBack()">Geri Dön</button>
-          
-        </div>
-        
-
+          <span class="title">ŞİİRLER</span>
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Şiirin Adı</th>
+              <th scope="col">Yazar</th>
+              <th scope="col">Tarih</th>
+              <th scope="col">Puan</th>
+              <th scope="col">Oy Veren Kişi Sayısı</th>
+              <th scope="col">İncele</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let poemdata of poemUserScores">
+            <tr>
+              <td>{{poemdata.poem.poemName}}</td>
+              <td>{{poemdata.fakeName}}</td>
+              <td>26-10-2023</td>
+              <td>{{poemdata.poemScore}}</td>
+              <td>Oy Veren Kişi Sayısı</td>
+              <td><i (click)="PoemDetail(poemdata.poem)" class="fa-solid fa-magnifying-glass" style="color: #fd960a;"></i></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      
+        <div class="box" style="text-align: center;" *ngIf="detail">
+          <div class="poem-name" style="color: white;font-size: 22px;">{{poemDetail.poemName}}</div>
+          <div class="poem-text"><pre style="color: white;font-size: 20px;">{{poemDetail.poemText}}</pre></div>
+          
+          <div class="puan">
+              <form [formGroup]="scoreForm">
+                  <input formControlName="score" style="margin-right: 5%; height: 35px; bottom: 0;" class="formControl" type="number" placeholder="Puan Verin (0-10 arası)">
+                  <button type="submit" class="btn btn-primary" style="height: 35px;" (click)="SetPoemScore(poemDetail)">Gönder</button>
+              </form>
+          </div>
+          <div class="buttons">
+            <button class="btn btn-primary" style="margin-top: 5%;" (click)="TurnBack()">Geri Dön</button>
+            
+          </div>
+          
+  
+        </div>
+  </div>
 </div>
+
 
 
 

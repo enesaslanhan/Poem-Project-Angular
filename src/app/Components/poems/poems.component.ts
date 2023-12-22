@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, elementAt, forkJoin, map, switchMap } from 'rxjs';
+import { Observable, elementAt, forkJoin, map, switchMap, timer } from 'rxjs';
+import { PoemListModel } from 'src/app/Models/PoemListModel';
 import { Poem } from 'src/app/Models/poem';
 import { PoemDataModel } from 'src/app/Models/poemDataModel';
 import { PoemScore } from 'src/app/Models/poemScore';
 import { PoemUserScoreModel } from 'src/app/Models/poemUserScoreModel';
+import { PoemGetScoreService } from 'src/app/Services/poem-get-score.service';
 import { PoemScoreService } from 'src/app/Services/poem-score.service';
 import { PoemService } from 'src/app/Services/poem.service';
 import { UserService } from 'src/app/Services/user.service';
+
 
 @Component({
   selector: 'app-poems',
@@ -52,10 +55,11 @@ export class PoemsComponent implements OnInit {
   detail:boolean=false
   constructor(private poemService:PoemService,private userService:UserService,
     private poemScoreService:PoemScoreService,private formBuilder:FormBuilder,
-    private toastrService:ToastrService,private RouterService:Router) { }
+    private toastrService:ToastrService,private RouterService:Router,private poemGetScoreService:PoemGetScoreService) { }
   ngOnInit(): void {
     this.GetAll();
     this.CreateScoreForm();
+    this.GetPoem();
   }
   // ...
 
@@ -147,6 +151,83 @@ GetAll() {
     })
   }
 
+
+poemListModel:PoemListModel={
+  poem:null,
+  poemGetSocre:null,
+  user:null
+}
+poemListModels:PoemListModel[]=[]
+
+GetPoem(){
+  this.poemService.getAll().subscribe(response=>{
+    response.data.forEach(poem=>{
+      this.poemService.getPoemId(poem.id).subscribe(response=>{
+        this.SetPoemGetScore(response.data.id);
+      },error=>{},()=>this.PoemListModelClear())
+    });    
+  },error=>{},()=>{console.log(this.poemListModels)})
+  
+}
+SetPoem(poemId:Number){
+  this.poemService.getPoemId(poemId).subscribe(response=>{
+    this.poemListModel.poem=response.data
+  },error=>{},()=>{
+    this.SetUser(this.poemListModel.poem.userId);
+  })
+}
+
+SetPoemGetScore(id:number){
+  this.poemGetScoreService.getAll().pipe(map(data=>data.data.filter(d=>d.poemId==id))).subscribe(response=>{
+    this.poemListModel.poemGetSocre=response[0];
+  },error=>{},
+  ()=>{
+    this.SetPoem(this.poemListModel.poemGetSocre.poemId);
+  });
+}
+PoemListModelClear(){
+  this.poemListModel.poem=null;
+  this.poemListModel.poemGetSocre=null;
+  this.poemListModel.user=null;
+  
+}
+SetUser(userId:number){
+  this.userService.getById(userId).subscribe(response=>{
+    this.poemListModel.user=response.data;
+  },error=>{},()=>{
+    this.poemListModels.push(this.poemListModel);
+    //this.PoemListModelClear();
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   
 
 }
