@@ -6,8 +6,10 @@ import { Observable, elementAt, forkJoin, map, switchMap, timer } from 'rxjs';
 import { PoemListModel } from 'src/app/Models/PoemListModel';
 import { Poem } from 'src/app/Models/poem';
 import { PoemDataModel } from 'src/app/Models/poemDataModel';
+import { PoemGetScore } from 'src/app/Models/poemGetScore';
 import { PoemScore } from 'src/app/Models/poemScore';
 import { PoemUserScoreModel } from 'src/app/Models/poemUserScoreModel';
+import { User } from 'src/app/Models/user';
 import { PoemGetScoreService } from 'src/app/Services/poem-get-score.service';
 import { PoemScoreService } from 'src/app/Services/poem-score.service';
 import { PoemService } from 'src/app/Services/poem.service';
@@ -59,7 +61,8 @@ export class PoemsComponent implements OnInit {
   ngOnInit(): void {
     this.GetAll();
     this.CreateScoreForm();
-    this.GetPoem();
+    this.SetPoem();
+    
   }
   // ...
 
@@ -113,6 +116,7 @@ GetAll() {
     );
   }
   PoemDetail(poem:Poem){
+    console.log(poem)
     this.poemDetail.poemName=poem.poemName
     this.poemDetail.poemText=poem.poemText
     this.poemDetail.id=poem.id
@@ -150,6 +154,8 @@ GetAll() {
       this.toastrService.error("Puan Verilemedi")
     })
   }
+/////////////////////////////////////////////////////////////////////////
+//Buradan sonrasına bakıcaz yukarı ile ilgisi yok sadece ngoninitte getPoem fonksiyonu çalısıyor
 
 
 poemListModel:PoemListModel={
@@ -158,13 +164,14 @@ poemListModel:PoemListModel={
   user:null
 }
 poemListModels:PoemListModel[]=[]
-
+/*
 GetPoem(){
   this.poemService.getAll().subscribe(response=>{
-    response.data.forEach(poem=>{
-      this.poemService.getPoemId(poem.id).subscribe(response=>{
+    response.data.forEach(element=>{
+      
+      this.poemService.getPoemId(element.id).subscribe(response=>{
         this.SetPoemGetScore(response.data.id);
-      },error=>{},()=>this.PoemListModelClear())
+      })
     });    
   },error=>{},()=>{console.log(this.poemListModels)})
   
@@ -172,6 +179,7 @@ GetPoem(){
 SetPoem(poemId:Number){
   this.poemService.getPoemId(poemId).subscribe(response=>{
     this.poemListModel.poem=response.data
+    
   },error=>{},()=>{
     this.SetUser(this.poemListModel.poem.userId);
   })
@@ -180,6 +188,8 @@ SetPoem(poemId:Number){
 SetPoemGetScore(id:number){
   this.poemGetScoreService.getAll().pipe(map(data=>data.data.filter(d=>d.poemId==id))).subscribe(response=>{
     this.poemListModel.poemGetSocre=response[0];
+    console.log(this.poemListModels)
+    
   },error=>{},
   ()=>{
     this.SetPoem(this.poemListModel.poemGetSocre.poemId);
@@ -194,40 +204,50 @@ PoemListModelClear(){
 SetUser(userId:number){
   this.userService.getById(userId).subscribe(response=>{
     this.poemListModel.user=response.data;
-  },error=>{},()=>{
+    
     this.poemListModels.push(this.poemListModel);
+    console.log(this.poemListModels)
+  },error=>{},()=>{
+    
     //this.PoemListModelClear();
   })
 }
+*/
+poemss:Poem[]=[]
+poemGetScores:PoemGetScore[]=[]
+users:User[]=[]
+SetPoem(){
+  this.poemService.getAll().subscribe(response=>{
+    response.data.forEach(element=>{
+      this.poemListModel.poem=element
+      this.poemss.push(element)
+      this.poemGetScoreService.getAll().pipe(map(data=>data.data.filter(d=>d.poemId==element.id))).subscribe(response2=>{
+        this.poemListModel.poemGetSocre=response2[0];
+        this.poemGetScores.push(response2[0])
+        this.userService.getById(element.userId).subscribe(response3=>{
+          this.poemListModel.user=response3.data;
+          this.poemListModels.push(this.poemListModel)
+          this.users.push(response3.data)
+        },error=>{},()=>{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
+        })
+      })
+    })
+  },error=>{},()=>this.SetModelList())
+}
+SetModelList(){
+  for (let index = 0; index < this.users.length; index++) {
+    let poemList:PoemListModel={
+      poem:null,
+      poemGetSocre:null,
+      user:null,
+    }
+    poemList.poem=this.poemss[index];
+    poemList.poemGetSocre=this.poemGetScores[index];
+    poemList.user=this.users[index]
+    this.poemListModels.push(this.poemListModel)
+  }
+  console.log(this.poemListModels)
+}
 
 }

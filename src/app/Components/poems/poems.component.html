@@ -9,7 +9,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <div class="score"></div>
     </div>
 </div>-->
-
+<!--
 <div class="deneme">
   <div class="container">
     <div  *ngIf="detail!=true">
@@ -36,7 +36,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </tr>
           </tbody>
         </table>
-      </div>
+       
+      
+    </div>
       
         <div class="box" style="text-align: center;" *ngIf="detail">
           <div class="poem-name" style="color: white;font-size: 22px;">{{poemDetail.poemName}}</div>
@@ -57,7 +59,51 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </div>
   </div>
 </div>
+-->
+<div class="deneme">
+  <div class="container">
+    <div *ngIf="detail!=true">
+      <span class="title">ŞİİRLER</span>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Şiirin Adı</th>
+          <th scope="col">Yazar</th>
+          <th scope="col">Tarih</th>
+          <th scope="col">Puan</th>
+          <th scope="col">Oy Veren Kişi Sayısı</th>
+          <th scope="col">İncele</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of users; let i = index;">
+        <tr>
+          <td>{{poemss[i].poemName}}</td>
+          <td>{{users[i].fakeName}}</td>
+          <td>26-10-2023</td>
+          <td style="text-align: center;">{{poemGetScores[i].score}}</td>
+          <td style="text-align: center;">{{poemGetScores[i].numberOfUser}}</td>
+          <td><i (click)="PoemDetail(poemss[i])" class="fa-solid fa-magnifying-glass" style="color: #fd960a;"></i></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="box" style="text-align: center;" *ngIf="detail">
+      <div class="poem-name" style="color: white;font-size: 22px;">{{poemDetail.poemName}}</div>
+      <div class="poem-text"><pre style="color: white;font-size: 20px;">{{poemDetail.poemText}}</pre></div>
+      
+      <div class="puan">
+          <form [formGroup]="scoreForm">
+              <input formControlName="score" style="margin-right: 5%; height: 35px; bottom: 0;" class="formControl" type="number" placeholder="Puan Verin (0-10 arası)">
+              <button type="submit" class="btn btn-primary" style="height: 35px;" (click)="SetPoemScore(poemDetail)">Gönder</button>
+          </form>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-primary" style="margin-top: 5%;" (click)="TurnBack()">Geri Dön</button>
+        
+      </div>
+      
 
-
-
-
+    </div>
+    
+  </div>
+</div>
