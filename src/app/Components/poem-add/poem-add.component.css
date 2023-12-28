@@ -4,7 +4,7 @@
 }
 #container{
     width: 65%; /* 10 birimlik yer kaplar */
-    background-color: lightblue;
+    background-color: #017374;
     border: 1px solid #000;
     box-sizing: border-box;
     margin-left: 4%; /* İki div arasında 10 piksel boşluk bırakır */
@@ -23,15 +23,15 @@
     padding: 10px;
     width: 150px;
     margin: 20px 0;
-    background-color:rgb(98, 61, 94) ;
+    background-color:#1F3B4D ;
 }
 .label{
     font-size: 20px;
     color: white;
 }
 .poem{
-    background-color: rgb(98, 61, 94);
-    color: white;
+    background-color:#D0FEFE;
+    color: #1F3B4D;
     text-align: center;
     padding:10px 0;
 }

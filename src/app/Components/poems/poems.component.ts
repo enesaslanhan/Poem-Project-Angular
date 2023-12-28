@@ -249,5 +249,23 @@ SetModelList(){
   }
   console.log(this.poemListModels)
 }
+index:number=0;
+right(){
+  if(this.index>=this.users.length-1){
+    this.index=0;
+
+  }
+  else{
+    this.index++
+  }
+}
+left(){
+  if (this.index<0) {
+    this.index=this.users.length-2
+  }
+  else{
+    this.index--;
+  }
+}
 
 }

@@ -24,6 +24,7 @@ export class BestPoemComponent implements OnInit{
   ngOnInit(): void {
     this.GetPoem();
   }
+  
 
   NumberOfPeopleGivingPoints(id:number){
     this.poemGetScoreService.getAll().pipe(map(data=>data.data.filter(d=>d.poemId==id))).subscribe(response=>{
