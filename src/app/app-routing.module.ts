@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth-guard';
 import { PoemsComponent } from './Components/poems/poems.component';
 import { BestPoemComponent } from './Components/best-poem/best-poem.component';
 import { HomeComponent } from './Components/home/home.component';
+import { PoemOperationsComponent } from './Admin/Components/poem-operations/poem-operations.component';
 
 const routes: Routes = [
 
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'poem-add',canActivate:[AuthGuard],component:PoemAddComponent},
   {path:'poems',component:PoemsComponent},
   {path:'best-poem',component:BestPoemComponent},
-  {path:'home',component:HomeComponent}
+  {path:'home',component:HomeComponent},
+  {path:'admin/poems-opertaions',component:PoemOperationsComponent}
 
 ];
 

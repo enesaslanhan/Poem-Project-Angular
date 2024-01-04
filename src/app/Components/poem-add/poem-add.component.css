@@ -38,7 +38,7 @@
 
 #profil{
     width: 25%; /* 3 yanyana sıralanır */
-    background-color: lightgreen;
+    background-color: #017374;
     border: 1px solid #000;
     box-sizing: border-box;
     margin-top: 4%;
@@ -48,17 +48,19 @@
 .name{
     margin-top: 5%;
     margin-bottom: 19%;
+    color: white;
 }
 #child{
     float: left;
 }
 .labelProfil{
-    color: black;
+    color: #1F3B4D;
     margin-right: 5%;
     margin-bottom: 10%;
     font-size: large;
-    background-color: white;
+    background-color: #D0FEFE;
     padding: 2% 6%;
+    border-radius: 5px;
     
 }
 

@@ -14,7 +14,7 @@ import { AuthGuard } from './guards/auth-guard';
 import { PoemsComponent } from './Components/poems/poems.component';
 import { BestPoemComponent } from './Components/best-poem/best-poem.component';
 import { HomeComponent } from './Components/home/home.component';
-
+import { PoemOperationsComponent } from './Admin/Components/poem-operations/poem-operations.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +23,8 @@ import { HomeComponent } from './Components/home/home.component';
     PoemAddComponent,
     PoemsComponent,
     BestPoemComponent,
-    HomeComponent
+    HomeComponent,
+    PoemOperationsComponent
   ],
   imports: [
     BrowserModule,

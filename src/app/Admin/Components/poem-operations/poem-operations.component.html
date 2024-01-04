@@ -1,0 +1,17 @@
+<div class="kutu">
+    <div id="div1" style="display: flex; justify-content: center; align-items: center;"class="col-md-1"><i (click)="left()" class="fa-solid fa-chevron-left fa-bounce fa-2xl" style="color: #FFFD01;font-size: 60px;"></i></div>
+    <div id="div2"class="col-md-10">
+      <div class="name">{{poemss[index].poemName}}</div>
+      <div class="text"><pre>{{poemss[index].poemText}}</pre></div>
+      <div class="information">
+        <div class="col-md-4"><div class="boxx"><label class="label">Şiirin Puanı :</label>{{poemGetScores[index].score}}</div></div>
+        <div class="col-md-4"><div class="boxx"><label class="label">Oy Sayısı :</label>{{poemGetScores[index].numberOfUser}}</div></div>
+        <div class="col-md-4"><div class="boxx"><label class="label">Yazar :</label>{{users[index].fakeName}}</div></div>
+      </div>
+      <div class="remove" style="text-align: center; margin-bottom: 3%;">
+        <button class="btn btn-dark" id="remove"style="width: 150px; height: 50px;" (click)="remove(index)">Şiiri Kaldır</button>
+    </div>
+    </div>
+    
+    <div id="div1" style="display: flex; justify-content: center; align-items: center;" class="col-md-1"><i (click)="right()" class="fa-solid fa-chevron-right fa-bounce fa-2xl" style="color: #FFFD01; font-size: 60px;"></i></div>
+</div>
