@@ -1,0 +1,79 @@
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    background-color:#1E488F;
+    width: 60%;
+    height: 65vh;
+    border-radius: 1rem;
+    border: 1px solid ;
+}
+.box{
+    justify-content: center;
+    height: 80%;
+    width: 90%;
+    background-color: #FFE5AD;
+    margin-top:6%;
+    border-radius: .4rem;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid ;
+}
+.title{
+    font-size: 1.5rem;
+    font-family: sans-serif;
+}
+.score,.poem-number{
+    margin: 1rem 0;
+    background-color: white;
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 0.5rem;
+    border: 1px solid;
+}
+.label{
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    font-family: sans-serif;
+}
+.information{
+    font-size: 1.2rem;
+    font-family: sans-serif;
+}
+.button{
+    margin-top: 1rem;
+}
+.punishment-automatic{
+    display: block;
+}
+.button{
+    margin-left: 5%;
+    width: 20%;
+    height: 3rem;
+    border-radius: .7rem;
+    font-family: sans-serif;
+    background-color:white ;
+}
+.input{
+    width: 20%;
+    height: 3rem;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: large;
+    border-radius: .7rem;
+    border: 1px solid;
+}
+
+#label{
+    background-color: white;
+    width: 50%;
+    
+    border-radius: 0.5rem;
+    border: 1px solid;
+}
+#submit:hover{
+    background-color: red;
+    color: white;
+    transition: 0.7s;
+    height: 4rem;
+}

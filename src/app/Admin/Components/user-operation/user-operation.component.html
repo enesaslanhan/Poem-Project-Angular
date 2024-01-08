@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="box">
+        <span class="title">{{userName}}</span>
+        <div class="score">
+            <label class="label">Profil Puanı =</label>
+            <span class="information">{{userScore/poemNumber}}</span>
+        </div>
+        <div class="poem-number">
+            <label class="label">Yazdığı Şiir Sayısı =</label>
+            <span class="information">{{poemNumber}}</span>
+        </div>
+        <span class="title">Ceza Sistemi</span>
+        <div class="punishment-automatic">
+            <button class="button">1 Gün</button>
+            <button class="button">3 Gün</button>
+            <button class="button">5 Gün</button>
+        </div>
+        <div class="punishment-manuel">
+            <label class="label" id="label">Girmek İstediğiniz Ceza Süresi</label>
+            <input type="number" class="input" placeholder="Ceza">
+            <button class="button" id="submit">Gönder</button>
+        </div>
+    </div>
+</div>

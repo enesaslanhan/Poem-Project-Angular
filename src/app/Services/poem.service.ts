@@ -23,7 +23,7 @@ export class PoemService {
     return this.httpClient.get<DataResponseModel<Poem>>(this.apiUrl+"getbypoemid?poemid="+poemId)
   }
   delete(poemId:number):Observable<ResponseModel>{
-    return this.httpClient.delete<ResponseModel>(this.apiUrl+"delete?poemid="+poemId)
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"delete?poemid="+poemId,poemId)
   }
 
 }

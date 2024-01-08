@@ -7,6 +7,7 @@ import { PoemsComponent } from './Components/poems/poems.component';
 import { BestPoemComponent } from './Components/best-poem/best-poem.component';
 import { HomeComponent } from './Components/home/home.component';
 import { PoemOperationsComponent } from './Admin/Components/poem-operations/poem-operations.component';
+import { UserOperationComponent } from './Admin/Components/user-operation/user-operation.component';
 
 const routes: Routes = [
 
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'poems',component:PoemsComponent},
   {path:'best-poem',component:BestPoemComponent},
   {path:'home',component:HomeComponent},
-  {path:'admin/poems-opertaions',component:PoemOperationsComponent}
+  {path:'admin/poems-opertaions',component:PoemOperationsComponent},
+  {path:'admin/user-opertaions',component:UserOperationComponent},
 
 ];
 

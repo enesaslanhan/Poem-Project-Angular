@@ -15,6 +15,7 @@ import { PoemsComponent } from './Components/poems/poems.component';
 import { BestPoemComponent } from './Components/best-poem/best-poem.component';
 import { HomeComponent } from './Components/home/home.component';
 import { PoemOperationsComponent } from './Admin/Components/poem-operations/poem-operations.component';
+import { UserOperationComponent } from './Admin/Components/user-operation/user-operation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { PoemOperationsComponent } from './Admin/Components/poem-operations/poem
     PoemsComponent,
     BestPoemComponent,
     HomeComponent,
-    PoemOperationsComponent
+    PoemOperationsComponent,
+    UserOperationComponent
   ],
   imports: [
     BrowserModule,
