@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -7,6 +8,7 @@ import { User } from 'src/app/Models/user';
 import { PoemGetScoreService } from 'src/app/Services/poem-get-score.service';
 import { PoemScoreService } from 'src/app/Services/poem-score.service';
 import { PoemService } from 'src/app/Services/poem.service';
+import { PunishmentService } from 'src/app/Services/punishment.service';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -21,17 +23,20 @@ export class PoemAddComponent implements OnInit{
   setUserName:string
   setPoemNumber:number=0
   setUserScore:number=0
-  constructor(private poemService:PoemService,private toastrService:ToastrService,
-    private formBuilder:FormBuilder,private userservice:UserService,
-    private poemGetScoreService:PoemGetScoreService) {  }
+  constructor(private poemService:PoemService,
+    private toastrService:ToastrService,
+    private formBuilder:FormBuilder,
+    private userservice:UserService,
+    private poemGetScoreService:PoemGetScoreService,
+    private punishmentService:PunishmentService) {  }
   ngOnInit() {
     this.createPoemForm();
     this.UserIdFind(sessionStorage.getItem("email"));
     this.SetUser();
-    this.SetPoemNumber()
-        
+    this.SetPoemNumber()        
   }
 
+  NowDate:Date
   createPoemForm(){
     this.poemAddForm=this.formBuilder.group({
       poemName:["",Validators.required],
@@ -39,10 +44,24 @@ export class PoemAddComponent implements OnInit{
     });
 
   }
+  PunishmentGet():boolean{
+    this.userservice.getByEmail(sessionStorage.getItem("email")).subscribe(response=>{
+      this.punishmentService.getById(2006).subscribe(response=>{
+        const punishmentEndDay = new Date(response.data.punishmentEndDay);
+        if (punishmentEndDay>new Date()) {
+          return false
+        }
+        else{
+          return true
+        }
+      })
+    })
+    return true;
+  }
 
   Add(){   
-    if (this.poemAddForm.valid) {
-      
+    if (this.poemAddForm.valid && this.PunishmentGet()==true) {
+
       let poemModel=Object.assign({},this.poemAddForm.value)
       let poem:Poem={
         poemName:poemModel.poemName,
@@ -57,6 +76,9 @@ export class PoemAddComponent implements OnInit{
       },errorResponse=>{
         this.toastrService.error("Şiiriniz siteye eklenemedi","başarısız")
       })
+    }
+    else{
+      this.toastrService.error("Cezanın devam etmektedir")
     }
   }
   

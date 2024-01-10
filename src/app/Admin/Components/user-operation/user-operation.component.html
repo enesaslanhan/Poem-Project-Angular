@@ -1,6 +1,6 @@
 <div class="container">
     <div class="box">
-        <span class="title">{{userName}}</span>
+        <span class="title">{{user.fakeName}}</span>
         <div class="score">
             <label class="label">Profil Puanı =</label>
             <span class="information">{{userScore/poemNumber}}</span>
@@ -11,9 +11,9 @@
         </div>
         <span class="title">Ceza Sistemi</span>
         <div class="punishment-automatic">
-            <button class="button">1 Gün</button>
-            <button class="button">3 Gün</button>
-            <button class="button">5 Gün</button>
+            <button class="button" (click)="SetPunishment(1)">1 Gün</button>
+            <button class="button" (click)="SetPunishment(3)">3 Gün</button>
+            <button class="button" (click)="SetPunishment(5)">5 Gün</button>
         </div>
         <div class="punishment-manuel">
             <label class="label" id="label">Girmek İstediğiniz Ceza Süresi</label>
