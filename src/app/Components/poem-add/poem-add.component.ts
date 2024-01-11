@@ -44,24 +44,25 @@ export class PoemAddComponent implements OnInit{
     });
 
   }
-  PunishmentGet():boolean{
+  PunishmentGet(){
     this.userservice.getByEmail(sessionStorage.getItem("email")).subscribe(response=>{
       this.punishmentService.getById(2006).subscribe(response=>{
         const punishmentEndDay = new Date(response.data.punishmentEndDay);
         if (punishmentEndDay>new Date()) {
-          return false
+          this.toastrService.error("Cezanız sürdüğü için şiir yükleyemezsiniz")
+          this.toastrService.info(`Kalan ceza gününüz : ${punishmentEndDay.getDay()-new Date().getDay()}`)
         }
         else{
-          return true
+          this.Add()
         }
       })
     })
     return true;
   }
 
-  Add(){   
-    if (this.poemAddForm.valid && this.PunishmentGet()==true) {
-
+  Add(){
+    if (this.poemAddForm.valid) {
+      
       let poemModel=Object.assign({},this.poemAddForm.value)
       let poem:Poem={
         poemName:poemModel.poemName,
