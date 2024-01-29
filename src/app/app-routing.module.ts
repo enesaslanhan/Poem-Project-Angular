@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'admin/poems-opertaions',component:PoemOperationsComponent},
   {path:'admin/user-opertaions',component:UserOperationComponent},
-
+  {path:'',component:PoemsComponent}
 ];
 
 @NgModule({

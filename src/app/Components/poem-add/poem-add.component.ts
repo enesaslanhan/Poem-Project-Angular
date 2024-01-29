@@ -46,7 +46,7 @@ export class PoemAddComponent implements OnInit{
   }
   PunishmentGet(){
     this.userservice.getByEmail(sessionStorage.getItem("email")).subscribe(response=>{
-      this.punishmentService.getById(2006).subscribe(response=>{
+      this.punishmentService.getById(4002).subscribe(response=>{
         const punishmentEndDay = new Date(response.data.punishmentEndDay);
         if (punishmentEndDay>new Date()) {
           this.toastrService.error("Cezanız sürdüğü için şiir yükleyemezsiniz")
