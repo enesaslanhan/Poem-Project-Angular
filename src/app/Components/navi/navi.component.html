@@ -8,7 +8,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <li><a routerLink="home">Ana Sayfa</a></li>
         <li><a routerLink="poems">Şiirler</a></li>
         <li><a routerLink="poem-add">Şiir Yaz</a></li>
-        <li><a routerLink="best-poem">Haftanın En İyisi</a></li>
+        <li><a routerLink="best-poem">Haftanın En İyisi</a></li>     
+        <li *ngIf="adminControl"><a routerLink="admin/poems-opertaions">Şiir İşlemleri</a></li>
     </ul>
     <div>
         <a href="" [routerLink]="deneme"  class="action_btn">{{userControl}}</a>

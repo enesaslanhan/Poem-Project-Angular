@@ -18,6 +18,7 @@ export class NaviComponent implements OnInit{
   }
   userControl="";
   logOutButton=false;
+  adminControl=false
   deneme="poem-add"
   
   toggleOpen(){
@@ -38,6 +39,9 @@ export class NaviComponent implements OnInit{
     if (sessionStorage.getItem("email")!=null) {
       this.userService.getByEmail(sessionStorage.getItem("email")).subscribe(response=>{
         this.userControl=response.data.fakeName;
+        if (response.data.email=="admin0129@gmail.com") {
+          this.adminControl=true;
+        }
         this.logOutButton=true;
       })
 
@@ -51,6 +55,7 @@ export class NaviComponent implements OnInit{
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("password");
     this.UserControlName();  
+    location.reload();
   }
   /*
   LogIn(){
